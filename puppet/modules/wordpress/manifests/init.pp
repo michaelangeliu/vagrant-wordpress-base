@@ -19,4 +19,13 @@ class wordpress::install {
   # Get a new copy of the latest wordpress release
   # FILE TO DOWNLOAD: http://wordpress.org/latest.tar.gz
 
+  # # Import a MySQL database for a basic wordpress site.
+  # file { '/tmp/wordpress-db.sql':
+  #   source => '/vagrant/puppet/modules/wordpress/files/wordpress-db.sql'
+  # }
+
+  # exec { 'load-db':
+  #   command => '/usr/bin/mysql -u wordpress -pwordpress wordpress < /tmp/wordpress-db.sql && touch /home/vagrant/db-created',
+  #   creates => '/home/vagrant/db-created',
+  # }
 }
