@@ -32,7 +32,7 @@
     3. Go to the RDS Service in the AWS Console
     4. Record the database name, endpoint, username, and password of the new DB
     5. Back in the AWS Elastic Beanstalk environment, set the following environment properties
-        * AWS_ACCESS_KEY
+        * AWS_ACCESS_KEY_ID
         * AWS_SECRET_KEY
         * RDS_DB_NAME
         * RDS_HOSTNAME
