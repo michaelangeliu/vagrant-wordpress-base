@@ -42,19 +42,10 @@
     * `<?php
           define('WP_HOME','http://localhost:8080');
           define('WP_SITEURL','http://localhost:8080');
-
           define('DB_NAME', 'DB_NAME');
-
-          /** MySQL database username */
           define('DB_USER', 'DB_USER');
-
-          /** MySQL database password */
           define('DB_PASSWORD', 'DB_PASSWORD');
-
-          /** MySQL hostname */
           define('DB_HOST', 'ENDPOINT_FROM_AWS_RDS');
-
-          /** The aws credentials */
           define('AWS_ACCESS_KEY_ID',     'AWS_ACCESS_KEY_ID');
           define('AWS_SECRET_ACCESS_KEY', 'AWS_SECRET_ACCESS_KEY');
       ?>`
@@ -84,25 +75,25 @@
 
 
 ### Database configuration
-    * DB engine: mysql
-    * Engine Version: 5.6
-    * Allocated storage: 5GB
-    * To make a copy of a database:
-        1. `vagrant ssh` to access the local server with mysql
-        2. Decide to copy the local database or the staging database
-            * Local:
-                * `mysqldump --user wordpress --password wordpress --add-locks --disable-keys --extended-insert > /vagrant/puppet/modules/wordpress/files/__FILENAME__.sql`
-            * Staging:
-                * `mysqldump -h aaggj19uact7a0.cg5moi3czoya.us-east-1.rds.amazonaws.com -u DB_USER -pDB_PASSWORD --port=3306 --single-transaction --routines --triggers --add-locks --disable-keys --extended-insert ebdb> /vagrant/__FILENAME__.sql`
-                * Replace the URL with "localhost:8080"
-        3. Replace the contents of `wordpress-db.sql`
-        4. `vagrant destroy` to remove the current server
-        5. `vagrant up` to create a fresh build
-    * If using a prexisting database
-        1. Replace `/puppet/modules/wordpress/files/wordpress-db.sql`
-        2. Uncomment lines 22-30 in `/puppet/modules/wordpress/manifests/init.pp`
-        3. `vagrant destroy`
-        4. `vagrant up`
+* DB engine: mysql
+* Engine Version: 5.6
+* Allocated storage: 5GB
+* To make a copy of a database:
+    1. `vagrant ssh` to access the local server with mysql
+    2. Decide to copy the local database or the staging database
+        * Local:
+            * `mysqldump --user wordpress --password wordpress --add-locks --disable-keys --extended-insert > /vagrant/puppet/modules/wordpress/files/__FILENAME__.sql`
+        * Staging:
+            * `mysqldump -h aaggj19uact7a0.cg5moi3czoya.us-east-1.rds.amazonaws.com -u DB_USER -pDB_PASSWORD --port=3306 --single-transaction --routines --triggers --add-locks --disable-keys --extended-insert ebdb> /vagrant/__FILENAME__.sql`
+            * Replace the URL with "localhost:8080"
+    3. Replace the contents of `wordpress-db.sql`
+    4. `vagrant destroy` to remove the current server
+    5. `vagrant up` to create a fresh build
+* If using a prexisting database
+    1. Replace `/puppet/modules/wordpress/files/wordpress-db.sql`
+    2. Uncomment lines 22-30 in `/puppet/modules/wordpress/manifests/init.pp`
+    3. `vagrant destroy`
+    4. `vagrant up`
 
 ## Configuration ##
 ### Dependencies ###
