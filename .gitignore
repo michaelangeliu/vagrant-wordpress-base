@@ -1,0 +1,12 @@
+*.log
+web/.htaccess
+web/wp-content/advanced-cache.php
+web/wp-content/backup-db/
+web/wp-content/backups/
+web/wp-content/blogs.dir/
+web/wp-content/cache/
+web/wp-content/upgrade/
+web/wp-content/uploads/
+web/wp-content/wp-cache-config.php
+.vagrant/
+.DS_Store
