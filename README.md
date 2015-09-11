@@ -8,6 +8,11 @@
 * Version
     * 0.0.0
 
+## Configuration ##
+### Dependencies ###
+* Vagrant (will build you a server with the necessary provisions)
+* VirtualBox
+* Amazon Web Services
 
 ## How do I get set up? ##
 
@@ -38,6 +43,7 @@
         * RDS_HOSTNAME
         * RDS_PASSWORD
         * RDS_USERNAME
+    6. Navigate to RDS instance's security group and add your public IP to the authorized CIDR/IP connections list, otherwise your local machine will not have access to the DB
 2. Create 'web/local-config.php' and define the following with the information
     * `<?php
           define('WP_HOME','http://localhost:8080');
@@ -51,6 +57,7 @@
       ?>`
 3. `vagrant up` to finish the Wordpress installation
 4. Add content to the two files in `.elasticbeanstalk`. See [Step 6](https://www.otreva.com/blog/deploying-wordpress-amazon-web-services-aws-ec2-rds-via-elasticbeanstalk/) for the content of the two files
+    * `eb push` to deploy initial commit
 5. Replace this README.md with relevant information to the new project (See 'Configure, Run, Deploy' below)
 6. `git add -A`
 7. `git commit -m 'Wordpress Setup with Elasticbeanstalk'`
@@ -84,7 +91,7 @@
         * Local:
             * `mysqldump --user wordpress --password wordpress --add-locks --disable-keys --extended-insert > /vagrant/puppet/modules/wordpress/files/__FILENAME__.sql`
         * Staging:
-            * `mysqldump -h aaggj19uact7a0.cg5moi3czoya.us-east-1.rds.amazonaws.com -u DB_USER -pDB_PASSWORD --port=3306 --single-transaction --routines --triggers --add-locks --disable-keys --extended-insert ebdb> /vagrant/__FILENAME__.sql`
+            * `mysqldump -h DB_HOST -u DB_USER -pDB_PASSWORD --port=3306 --single-transaction --routines --triggers --add-locks --disable-keys --extended-insert DB_NAME> /vagrant/__FILENAME__.sql`
             * Replace the URL with "localhost:8080"
     3. Replace the contents of `wordpress-db.sql`
     4. `vagrant destroy` to remove the current server
@@ -94,12 +101,6 @@
     2. Uncomment lines 22-30 in `/puppet/modules/wordpress/manifests/init.pp`
     3. `vagrant destroy`
     4. `vagrant up`
-
-## Configuration ##
-### Dependencies ###
-* Vagrant (will build you a server with the necessary provisions)
-* VirtualBox
-
 
 ## Contributors
 * Michael Liu
