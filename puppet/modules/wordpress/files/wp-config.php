@@ -18,15 +18,15 @@
  * @package WordPress
  */
 
-if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
-    include( dirname( __FILE__ ) . '/local-config.php' );
-} else if (isset($_SERVER['RDS_HOSTNAME'])) {
+if (isset($_SERVER['RDS_HOSTNAME'])) { // if on server
     define('DB_NAME',               $_SERVER['RDS_DB_NAME']);
     define('DB_USER',               $_SERVER['RDS_USERNAME']);
     define('DB_PASSWORD',           $_SERVER['RDS_PASSWORD']);
     define('DB_HOST',               $_SERVER['RDS_HOSTNAME']);
     define('AWS_ACCESS_KEY_ID',     $_ENV['AWS_ACCESS_KEY_ID']);
     define('AWS_SECRET_ACCESS_KEY', $_ENV['AWS_SECRET_KEY']);
+} else if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) { // if a aws db specified
+    include( dirname( __FILE__ ) . '/local-config.php' );
 } else {
     define('WP_HOME','http://localhost:8080');
     define('WP_SITEURL','http://localhost:8080');
