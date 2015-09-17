@@ -17,7 +17,7 @@
 ## How do I get set up? ##
 
 ### Test Setup ###
-1. `git clone git@github.com:michaelangeliu/vagrant-wordpress-base.git PROJECT_NAME`
+1. `git clone git@bitbucket.org:group360/base-wordpress.git PROJECT_NAME`
 2. `git remote set-url origin NEW_GIT_PROJECT_URL`
 3. `vagrant up` to start the server
     * This should create a local database
